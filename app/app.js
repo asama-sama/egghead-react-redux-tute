@@ -9,6 +9,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.nextTodoId = 0;
+    this.state = {
+      newTodo: ''
+    }
   }
 
   addTodo(text) {
@@ -19,8 +22,11 @@ export default class App extends React.Component {
     });
   }
 
+  updateNewTodo(newTodo) {
+    this.setState({newTodo});
+  }
+
   toggleTodo(id) {
-    console.log(id);
     todoStore.dispatch({
       type: 'TOGGLE_TODO',
       id
@@ -52,6 +58,8 @@ export default class App extends React.Component {
       <div>
         <Todos 
           addTodo={(e) => this.addTodo(e)}
+          newTodo={this.state.newTodo}
+          updateNewTodo={val => this.updateNewTodo(val)}
           toggle={(id) => this.toggleTodo(id)} 
           todos={visibleTodos}
         />
