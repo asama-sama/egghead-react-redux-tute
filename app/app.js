@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import todoStore, {getVisibleTodos} from 'store/todos';
-import Todos from './Todos';
+import VisibleTodoList from './VisibleTodoList';
 import Footer from './Footer';
+import AddTodo from './AddTodo';
 
 export default class App extends React.Component {
 
@@ -26,36 +27,19 @@ export default class App extends React.Component {
     this.setState({newTodo});
   }
 
-  toggleTodo(id) {
-    todoStore.dispatch({
-      type: 'TOGGLE_TODO',
-      id
-    });
-  }
-
   componentDidMount() {
     todoStore.subscribe(() => this.forceUpdate());
   }
 
   render() {
-    const {
-      todos,
-      visibilityFilter
-    } = todoStore.getState();
-
-    const visibleTodos = getVisibleTodos(
-      todos,
-      visibilityFilter
-    );
     return (
       <div>
-        <Todos 
+        <AddTodo
           addTodo={(e) => this.addTodo(e)}
-          newTodo={this.state.newTodo}
           updateNewTodo={val => this.updateNewTodo(val)}
-          toggle={(id) => this.toggleTodo(id)} 
-          todos={visibleTodos}
+          newTodo={this.state.newTodo}
         />
+        <VisibleTodoList />
         <Footer />
       </div>
     );
