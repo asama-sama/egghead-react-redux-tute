@@ -33,7 +33,7 @@ export default class App extends React.Component {
     });
   }
 
-  setFilter(filter) {
+  onFilterClick(filter) {
     todoStore.dispatch({
       type: 'SET_VISIBILITY_FILTER',
       filter
@@ -64,7 +64,7 @@ export default class App extends React.Component {
           todos={visibleTodos}
         />
         <Footer 
-          onFilterClick={(filter) => this.setFilter(filter)}
+          onFilterClick={(filter) => this.onFilterClick(filter)}
           visibilityFilter={visibilityFilter}
         />
       </div>

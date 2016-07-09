@@ -14,7 +14,7 @@ export default class FilterLink extends React.Component {
       <a href='#'
         onClick={e => {
           e.preventDefault();
-          this.props.onClick();
+          this.props.onClick(this.props.filter);
         }} >
         {this.props.children}
       </a>
