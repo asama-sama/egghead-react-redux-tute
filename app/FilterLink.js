@@ -1,20 +1,41 @@
 import React from 'react';
+import Link from './Link';
+import todoStore from 'store/todos';
 
-const FilterLink = ({currentFilter, children, filter, onClick}) => {
+export default class FilterLink extends React.Component {
 
-  if(currentFilter) {
-    return <span>{children}</span>
+  constructor(props) {
+    super(props);
+    this.store = todoStore;
   }
-  return (
-    <a href='#'
-      onClick={e => {
-        e.preventDefault();
-        onClick(filter);
-      }} >
-      {children}
-    </a>
-  );
 
-};
+  componentDidMount() {
+    this.unsubscribe = this.store.subscribe(() => {
+      this.forceUpdate();
+    });
+  }
 
-module.exports = FilterLink;
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  render() {
+    const props = this.props;
+    const state = this.store.getState();
+
+    return (
+      <Link
+        active={props.filter === state.visibilityFilter}
+        onClick={() => 
+          this.store.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
+            filter: props.filter
+          })
+        }
+      >
+        {props.children}
+      </Link>
+    );
+  }
+
+}

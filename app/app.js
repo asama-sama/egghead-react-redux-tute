@@ -33,13 +33,6 @@ export default class App extends React.Component {
     });
   }
 
-  onFilterClick(filter) {
-    todoStore.dispatch({
-      type: 'SET_VISIBILITY_FILTER',
-      filter
-    });
-  }
-
   componentDidMount() {
     todoStore.subscribe(() => this.forceUpdate());
   }
@@ -63,10 +56,7 @@ export default class App extends React.Component {
           toggle={(id) => this.toggleTodo(id)} 
           todos={visibleTodos}
         />
-        <Footer 
-          onFilterClick={(filter) => this.onFilterClick(filter)}
-          visibilityFilter={visibilityFilter}
-        />
+        <Footer />
       </div>
     );
   }
