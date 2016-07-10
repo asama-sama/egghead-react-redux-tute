@@ -1,23 +1,23 @@
 import React from 'react';
-import FilterLink from './FilterLink'
+import Link from './Link'
 
 const Footer = () => (
   <p>
-    <FilterLink
+    <Link
       filter='SHOW_ALL'
     >
       All
-    </FilterLink>
-    <FilterLink
+    </Link>
+    <Link
       filter='SHOW_ACTIVE'
     >
       Active
-    </FilterLink>
-    <FilterLink
+    </Link>
+    <Link
       filter='SHOW_COMPLETED'
     >
       Completed
-    </FilterLink>
+    </Link>
   </p>
 );
 
