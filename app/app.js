@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import todoStore, {getVisibleTodos} from 'store/todos';
 import VisibleTodoList from './VisibleTodoList';
 import Footer from './Footer';
 import AddTodo from './AddTodo';
@@ -15,30 +14,10 @@ export default class App extends React.Component {
     }
   }
 
-  addTodo(text) {
-    todoStore.dispatch({
-      type: 'ADD_TODO',
-      text,
-      id: this.nextTodoId++
-    });
-  }
-
-  updateNewTodo(newTodo) {
-    this.setState({newTodo});
-  }
-
-  componentDidMount() {
-    todoStore.subscribe(() => this.forceUpdate());
-  }
-
   render() {
     return (
       <div>
-        <AddTodo
-          addTodo={(e) => this.addTodo(e)}
-          updateNewTodo={val => this.updateNewTodo(val)}
-          newTodo={this.state.newTodo}
-        />
+        <AddTodo />
         <VisibleTodoList />
         <Footer />
       </div>

@@ -26,7 +26,7 @@ export default class VisibleTodoList extends React.Component {
             state.visibilityFilter
           )
         }
-        onTodoClick={id => {
+        onTodoClick={(id) => {
           store.dispatch({
             type: 'TOGGLE_TODO',
             id
