@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getVisibleTodos } from './store/todos';
 
-const TodoList = ({todos, onTodoClick}) => (
+let TodoList = ({todos, onTodoClick}) => (
   <div>
     <ul>
       {todos.map(todo => {
@@ -40,9 +40,9 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-const VisibleTodoList = connect(
+TodoList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoList);
 
-module.exports = VisibleTodoList;
+module.exports = TodoList;
