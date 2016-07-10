@@ -58,20 +58,6 @@ export const getVisibleTodos = (todos, filter) => {
   }
 }
 
-// const combineReducers = (reducers) => {
-//   return (state = {}, action) => {
-//     return Object.keys(reducers).reduce(
-//       (nextState, key) => {
-//         console.log('c', nextState, key)
-//         nextState[key] = reducers[key](
-//           state[key],
-//           action
-//         );
-//         return nextState;
-//       }, {}
-//     );
-//   }
-// }
 
 const todoApp = combineReducers({
   todos,
@@ -79,3 +65,4 @@ const todoApp = combineReducers({
 });
 const store = createStore(todoApp);
 export default store;
+
