@@ -8,6 +8,7 @@ module.exports = {
     path: './build',
     filename: 'bundle.js'
   },
+  devtool: 'eval-source',
   module: {
     loaders: [
       {

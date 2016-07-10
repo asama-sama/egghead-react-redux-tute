@@ -8,7 +8,7 @@ export default class FilterLink extends React.Component {
   }
 
   componentDidMount() {
-    const { store } = this.props;
+    const { store } = this.context;
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate();
     });
@@ -20,7 +20,7 @@ export default class FilterLink extends React.Component {
 
   render() {
     const props = this.props;
-    const {store} = this.props;
+    const {store} = this.context;
     const state = store.getState();
 
     return (
@@ -37,5 +37,8 @@ export default class FilterLink extends React.Component {
       </Link>
     );
   }
-
 }
+
+FilterLink.contextTypes = {
+  store: React.PropTypes.object
+};

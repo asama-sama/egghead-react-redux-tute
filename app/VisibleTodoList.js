@@ -5,7 +5,7 @@ import { getVisibleTodos } from './store/todos';
 export default class VisibleTodoList extends React.Component {
 
   componentDidMount() {
-    const { store } = this.props;
+    const { store } = this.context;
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate();
     });
@@ -17,7 +17,7 @@ export default class VisibleTodoList extends React.Component {
 
   render() {
     const props = this.props;
-    const { store } = props;
+    const { store } = this.context;
     const state = store.getState();
 
     return (
@@ -38,3 +38,7 @@ export default class VisibleTodoList extends React.Component {
     );
   }
 }
+
+VisibleTodoList.contextTypes = {
+  store: React.PropTypes.object
+};

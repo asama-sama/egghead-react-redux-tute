@@ -9,7 +9,7 @@ export default class AddTodo extends React.Component {
   }
 
   addTodo(text) {
-    const { store } = this.props;
+    const { store } = this.context;
     store.dispatch({
       type: 'ADD_TODO',
       text,
@@ -22,7 +22,7 @@ export default class AddTodo extends React.Component {
   }
 
   render() {
-    const { store } = this.props;
+    const { store } = this.context;
     return (
       <div>
         <input value={this.state.newTodo} onChange={e => this.updateNewTodo(e.target.value)}/>
@@ -36,3 +36,7 @@ export default class AddTodo extends React.Component {
     );
   }
 }
+
+AddTodo.contextTypes = {
+  store: React.PropTypes.object
+};
