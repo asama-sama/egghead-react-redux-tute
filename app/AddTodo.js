@@ -1,21 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addTodo } from 'actions/actions';
 
 class AddTodo extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {newTodo: ''};
-    this.nextTodoId = 0;
-  }
-
-  addTodo(text) {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'ADD_TODO',
-      text,
-      id: this.nextTodoId++
-    });
   }
 
   updateNewTodo(newTodo) {
@@ -23,11 +14,12 @@ class AddTodo extends React.Component {
   }
 
   render() {
+    const { dispatch } = this.props;
     return (
       <div>
         <input value={this.state.newTodo} onChange={e => this.updateNewTodo(e.target.value)}/>
         <button onClick={() => {
-          this.addTodo(this.state.newTodo);
+          dispatch(addTodo(this.state.newTodo));
           this.updateNewTodo('');
         }}>
           Add Todos
