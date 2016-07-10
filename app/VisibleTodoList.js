@@ -1,10 +1,11 @@
 import React from 'react';
-import store, {getVisibleTodos} from 'store/todos';
 import TodoList from './Todos';
+import { getVisibleTodos } from './store/todos';
 
 export default class VisibleTodoList extends React.Component {
 
   componentDidMount() {
+    const { store } = this.props;
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate();
     });
@@ -16,6 +17,7 @@ export default class VisibleTodoList extends React.Component {
 
   render() {
     const props = this.props;
+    const { store } = props;
     const state = store.getState();
 
     return (

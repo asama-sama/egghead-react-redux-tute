@@ -1,16 +1,15 @@
 import React from 'react';
 import Link from './Link';
-import todoStore from 'store/todos';
 
 export default class FilterLink extends React.Component {
 
   constructor(props) {
     super(props);
-    this.store = todoStore;
   }
 
   componentDidMount() {
-    this.unsubscribe = this.store.subscribe(() => {
+    const { store } = this.props;
+    this.unsubscribe = store.subscribe(() => {
       this.forceUpdate();
     });
   }
@@ -21,13 +20,14 @@ export default class FilterLink extends React.Component {
 
   render() {
     const props = this.props;
-    const state = this.store.getState();
+    const {store} = this.props;
+    const state = store.getState();
 
     return (
       <Link
         active={props.filter === state.visibilityFilter}
         onClick={() => 
-          this.store.dispatch({
+          store.dispatch({
             type: 'SET_VISIBILITY_FILTER',
             filter: props.filter
           })

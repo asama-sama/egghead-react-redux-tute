@@ -1,5 +1,4 @@
 import React from 'react';
-import store from 'store/todos';
 
 export default class AddTodo extends React.Component {
 
@@ -10,6 +9,7 @@ export default class AddTodo extends React.Component {
   }
 
   addTodo(text) {
+    const { store } = this.props;
     store.dispatch({
       type: 'ADD_TODO',
       text,
@@ -22,6 +22,7 @@ export default class AddTodo extends React.Component {
   }
 
   render() {
+    const { store } = this.props;
     return (
       <div>
         <input value={this.state.newTodo} onChange={e => this.updateNewTodo(e.target.value)}/>
